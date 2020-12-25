@@ -9,6 +9,7 @@ function LandingPage() {
     const [MainMovieImage, setMainMovieImage] = useState(null)
 
     useEffect(() => {
+
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
         fetch(endpoint)
@@ -16,7 +17,7 @@ function LandingPage() {
         .then(response => {
             console.log(response)
             setMovies([response.results])
-            setMainMovieImage(response.results[0])
+            setMainMovieImage(response.results[Math.floor(Math.random() * 10)])
         })
     }, [])
 

@@ -2,21 +2,21 @@
   "name": "react-boiler-plate",
   "version": "1.0.0",
   "description": "react boiler plate",
-  "main": "index.js",
+  "main": "./server/index.js",
   "engine": {
     "node": "10.16.0",
     "npm": "6.9.0"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "backend": "nodemon server/index.js",
-    "frontend": "npm run start --prefix client",
-    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+    "start": "nodemon index.js",
+    "client": "cd client && yarn start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn client\""
   },
   "author": "John ahn",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^3.0.8",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",

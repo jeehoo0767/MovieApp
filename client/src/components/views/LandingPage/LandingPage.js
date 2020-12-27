@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import { FaCode } from "react-icons/fa";
+import GridCard from '../commons/GridCard'
 import MainImage from './Sections/MainImage'
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config'
+import { Row } from 'antd';
 
 function LandingPage() {
     
@@ -33,7 +35,17 @@ function LandingPage() {
            <div style={{ width:'85%', margin : '1rem auto'}}>
                 <h2>Movies by latest</h2>
                 <hr/>
-
+                <Row>
+                    {Movies && Movies.map((movie, index) => {
+                        return <React.Fragment key={index}>
+                            <GridCard 
+                                image={movie.poster_path? `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
+                                movieId={movie.id}
+                                movieName={movie.original_title}
+                            />
+                        </React.Fragment>
+                    })}
+                </Row>
            </div>
 
            <div style={{display : 'flex', justifyContent : 'center'}}>

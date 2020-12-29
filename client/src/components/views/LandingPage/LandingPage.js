@@ -18,7 +18,8 @@ function LandingPage() {
         .then(response => response.json())
         .then(response => {
             console.log(response)
-            setMovies([response.results])
+            setMovies([...Movies, ...response.results])
+            console.log(Movies)
             setMainMovieImage(response.results[Math.floor(Math.random() * 10)])
         })
     }, [])

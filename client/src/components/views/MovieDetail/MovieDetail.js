@@ -11,6 +11,7 @@ function MovieDetail(props) {
 
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
+    const [Show, setShow] = useState(false)
 
     useEffect(() => {
 
@@ -33,6 +34,10 @@ function MovieDetail(props) {
        })
     }, [])
 
+    const handleShow = () => {
+        setShow(!Show)
+    }
+
     return (
         <div >
             {/* Header */}
@@ -50,19 +55,21 @@ function MovieDetail(props) {
                 <br/>
                 {/* Actors Grid */}
                 <div style={{ display:'flex', justifyContent : 'center', margin : '2rem'}}>
-                    <button>Toggle Actor View</button>
+                    <button onClick={handleShow}>Toggle Actor View</button>
                 </div>
-                <Row gutter={[16, 16]}>
+                {Show && 
+                    <Row gutter={[16, 16]}>
                     {Casts && Casts.map((cast, index) => {
                         return <React.Fragment key={index}>
                             <GridCard 
                                 image={cast.profile_path? `${IMAGE_BASE_URL}w500${cast.profile_path}` : null}
-                                movieId={cast.id}
-                                movieName={cast.original_title}
+                                charactorName={cast.name}
                             />
                         </React.Fragment>
                     })}
                 </Row>
+                }
+                
             </div>
         </div>
     )

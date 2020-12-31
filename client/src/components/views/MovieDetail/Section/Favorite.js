@@ -18,7 +18,7 @@ function Favorite(props) {
         Axios.post('/api/favorite/favoriteNumber', variables)
         .then(response => {
             if(response.data.success) {
-
+                console.log(response.data)
             } else {
                 alert('좋아요 정보 가져오기 실패')
             }

@@ -8,6 +8,7 @@ function Favorite(props) {
     const movieTitle = props.movieInfo.title
     const moviePost = props.movieInfo.backdrop_path
     const movieRunTime = props.movieInfo.runtime
+
     useEffect(() => {
 
         let variables = {
@@ -23,6 +24,16 @@ function Favorite(props) {
                 alert('좋아요 정보 가져오기 실패')
             }
         })
+
+        Axios.post('/api/favorite/favorited', variables)
+        .then(response => {
+            if(response.data.success) {
+                console.log('좋아요', response.data)
+            } else {
+                alert('좋아요 실패')
+            }
+        })
+
     }, [])
 
     return (

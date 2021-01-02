@@ -27,4 +27,25 @@ router.post('/favorited', (req, res) => {
     })
 })
 
+router.post('/removeFromFavorite', (req, res) => {
+    Favorite.findOneAndDelete({movieId : req.body.movieId, userFrom : req.body.userFrom})
+    .exec(( err, doc ) => {
+        if(err) return res.status(400).send(err)
+        return res.status(200).json({success : true, doc})
+    })
+    // 클라이언트에서 보내준 movieId와 userFrom을 이용해 findOneAndDelete()메소드를 이용해 찾아서 지운다.
+
+})
+
+router.post('/addToFavorite', (req, res) => {
+    const favorite = new Favoeite(req.body)
+
+    favorite.save((err, dec) => {
+        if(err) return res.status(400).send(err)
+        return res.status(200).json({success : true})
+    })
+    //favorite 인스턴스 생성 후 인자로 req.body를 준다.
+    //.save() 메소드를 통해 도큐먼트를 몽고DB에 저장
+})
+
 module.exports = router;

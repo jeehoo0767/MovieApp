@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Axios from 'axios'
+import { Button } from 'antd'
 
 function Favorite(props) {
 
@@ -14,7 +15,10 @@ function Favorite(props) {
 
     let variables = {
         userFrom,
-        movieId
+        movieId,
+        movieTitle,
+        moviePost,
+        movieRunTime
     }
 
     useEffect(() => {
@@ -44,7 +48,8 @@ function Favorite(props) {
             Axios.post('/api/favorite/removeFromFavorite', variables)
             .then(response => {
                 if(response.data.success) {
-
+                    setFavoriteNumber(FavoriteNumber -1)
+                    setFavorited(!Favorited)
                 } else {
                     alert('좋아요 취소 실패')
                 }
@@ -53,7 +58,8 @@ function Favorite(props) {
             Axios.post('/api/favorite/addToFavorite', variables)
             .then(response => {
                 if(response.data.success) {
-
+                    setFavoriteNumber(FavoriteNumber +1)
+                    setFavorited(!Favorited)
                 } else {
                     alert('좋아요 리스트 넣기 실패')
                 }
@@ -63,7 +69,7 @@ function Favorite(props) {
 
     return (
         <div>
-            <button onClick={favoriteHandler}>{Favorited ? "Not Favorited" : `Add To Favorite ${FavoriteNumber}`}</button>
+            <Button onClick={favoriteHandler}>{Favorited ? "Not Favorited" : `Add To Favorite ${FavoriteNumber}`}</Button>
         </div>
     )
 }

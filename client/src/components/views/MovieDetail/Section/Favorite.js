@@ -4,29 +4,31 @@ import { Button } from 'antd'
 
 function Favorite(props) {
 
+    
+    const [FavoriteNumber, setFavoriteNumber] = useState(0)
+    const [Favorited, setFavorited] = useState(false)
+
     const movieId = props.movieId
     const userFrom = props.userFrom
     const movieTitle = props.movieInfo.title
     const moviePost = props.movieInfo.backdrop_path
     const movieRunTime = props.movieInfo.runtime
-
-    const [FavoriteNumber, setFavoriteNumber] = useState(0)
-    const [Favorited, setFavorited] = useState(false)
-
+    
     let variables = {
-        userFrom,
-        movieId,
-        movieTitle,
-        moviePost,
-        movieRunTime
+        movieId : movieId,
+        userFrom : userFrom,
+        movieTitle : movieTitle,
+        moviePost : moviePost,
+        movieRunTime : movieRunTime
     }
 
-    useEffect(() => {
 
+    useEffect(() => {
         Axios.post('/api/favorite/favoriteNumber', variables)
         .then(response => {
             if(response.data.success) {
                 setFavoriteNumber(response.data.favoriteNumber)
+                FavoriteNumber > 1 ? setFavorited(!Favorited) : setFavorited(Favorited)
             } else {
                 alert('좋아요 정보 가져오기 실패')
             }
@@ -66,7 +68,6 @@ function Favorite(props) {
             })
         }
     }
-
     return (
         <div>
             <Button onClick={favoriteHandler}>{Favorited ? "Not Favorited" : `Add To Favorite ${FavoriteNumber}`}</Button>

@@ -17,7 +17,6 @@ function MovieDetail(props) {
     useEffect(() => {
 
         let endpointCrew = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`
-
         let endpointInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}`
 
        fetch(endpointInfo)
@@ -51,6 +50,8 @@ function MovieDetail(props) {
             <div style={{ width : '85%', margin : '1rem auto'}}>
                 <div style = {{ display : 'flex', justifyContent : 'flex-end'}}>
                     <Favorite 
+                        movieId = {movieId}
+                        userFrom = {localStorage.getItem('userId')}
                         movieInfo = {Movie}
                     />
                 </div>

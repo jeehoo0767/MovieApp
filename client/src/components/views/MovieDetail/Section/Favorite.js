@@ -24,6 +24,7 @@ function Favorite(props) {
 
 
     useEffect(() => {
+        console.log(variables)
         Axios.post('/api/favorite/favoriteNumber', variables)
         .then(response => {
             if(response.data.success) {

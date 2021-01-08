@@ -13,6 +13,7 @@ function MovieDetail(props) {
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
     const [Show, setShow] = useState(false)
+    const [Comments, setComments] = useState([])
 
     useEffect(() => {
 
@@ -36,6 +37,10 @@ function MovieDetail(props) {
 
     const handleShow = () => {
         setShow(!Show)
+    }
+
+    const stateRefresh = (newComment) => {
+        setComments(Comments.concat(newComment))
     }
 
     return (

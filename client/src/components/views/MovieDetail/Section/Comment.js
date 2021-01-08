@@ -35,9 +35,10 @@ function Comment(props) {
 
     return (
         <div>
-            <br/>
-            <p>Replies</p>
-            <hr/>
+            <div style={{textAlign : 'center', position : 'relative', width : '100%', margin : '1rem auto'}}>
+                <h3 style={{backgroundColor : '#fff', position : 'relative', top : '17px', zIndex : '99', width : 'auto', margin : 'auto', display : 'inline-block', padding : '0px 25px'}}>Replies</h3>
+                <hr style={{width : '100%'}}/>
+            </div>
 
             {/* comment list*/}
 

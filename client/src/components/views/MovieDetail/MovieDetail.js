@@ -5,7 +5,7 @@ import MainImage from '../LandingPage/Sections/MainImage'
 import MovieInfo from './Section/MovieInfo'
 import GridCard from '../commons/GridCard'
 import Favorite from './Section/Favorite'
-
+import Comment from './Section/Comment'
 function MovieDetail(props) {
 
     let movieId = props.match.params.movieId

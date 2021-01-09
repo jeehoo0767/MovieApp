@@ -18,8 +18,14 @@ function MovieDetail(props) {
 
     useEffect(() => {
 
+        let movieId = props.match.params.movieId
+
         let endpointCrew = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`
         let endpointInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}`
+
+        let getCommentsVariable = {
+            postId : movieId
+        }
 
        fetch(endpointInfo)
        .then(response => response.json())
@@ -35,7 +41,7 @@ function MovieDetail(props) {
            setCasts(response.cast)
        })
 
-       Axios.post('/api/comment/getComments', {postId : movieId})
+       Axios.post('/api/comment/getComments', getCommentsVariable)
        .then(response => {
            if(response.data.success){
                 setComments(response.data.comments)

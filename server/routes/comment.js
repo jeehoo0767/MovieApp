@@ -5,6 +5,8 @@ const { Comment } = require('../models/Comment');
 router.post('/saveComment', (req, res) => {
     const comment = new Comment(req.body);
 
+    console.log(comment._id)
+
     comment.save((err, comment) => {
         if(err) res.status(400).json({ success : false, err})
         
@@ -19,6 +21,7 @@ router.post('/saveComment', (req, res) => {
 
 
 router.post('/getComments', (req, res) => {
+    console.log(req.body.movieId)
     Comment.find({ "postId" : req.body.movieId })
     .populate('writer')
     .exec(( err, comments ) => {

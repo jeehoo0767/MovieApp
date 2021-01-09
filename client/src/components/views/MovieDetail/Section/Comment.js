@@ -22,11 +22,13 @@ function Comment(props) {
             writer : user.userData._id,
             postId : props.postId
         }
+        console.log(variable)
         Axios.post('/api/comment/saveComment', variable)
         .then(response => {
             if(response.data.success) {
                 props.stateRefresh(response.data.result);
                 setCommentValue("");
+                console.log("서브밋")
             } else {
                 alert("댓글 저장 실패")
             }
@@ -45,7 +47,7 @@ function Comment(props) {
             {props.commentList && props.commentList.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment>
-                        <SingleComment key = {index} stateRefresh={props.stateRefresh} comment = {comment} movieId = {props.movieId}/>
+                        <SingleComment key = {index} stateRefresh={props.stateRefresh} comment = {comment} postId = {props.movieId}/>
                         <ReplyComment stateRefresh={props.stateRefresh} parentCommentId={comment._id} commentList = {props.commentList}/>
                     </React.Fragment>
                 )

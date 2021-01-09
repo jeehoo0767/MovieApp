@@ -6,6 +6,7 @@ import MovieInfo from './Section/MovieInfo'
 import GridCard from '../commons/GridCard'
 import Favorite from './Section/Favorite'
 import Comment from './Section/Comment'
+import Axios from 'axios'
 function MovieDetail(props) {
 
     let movieId = props.match.params.movieId
@@ -33,6 +34,16 @@ function MovieDetail(props) {
            console.log(response)
            setCasts(response.cast)
        })
+
+       Axios.post('/api/comment/getComments', {postId : movieId})
+       .then(response => {
+           if(response.data.success){
+                setComments(response.data.comments)
+                console.log(Comments)
+           } else {
+                alert('댓글 가져오기 실패')
+           }
+       })
     }, [])
 
     const handleShow = () => {
@@ -42,6 +53,7 @@ function MovieDetail(props) {
     const stateRefresh = (newComment) => {
         setComments(Comments.concat(newComment))
     }
+
 
     return (
         <div >
@@ -85,7 +97,8 @@ function MovieDetail(props) {
                 }
                 
             </div>
-            <Comment stateRefresh={stateRefresh} commentList = {Comments} movieId = {movieId}/>
+
+            <Comment stateRefresh={stateRefresh} commentList = {Comments} postId = {movieId}/>
         </div>
     )
 }

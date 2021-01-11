@@ -21,7 +21,6 @@ router.post('/saveComment', (req, res) => {
 
 
 router.post('/getComments', (req, res) => {
-    console.log(req.body.postId)
     Comment.find({ "postId" : req.body.movieId })
     .populate('writer')
     .exec(( err, comments ) => {

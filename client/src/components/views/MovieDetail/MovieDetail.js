@@ -45,6 +45,7 @@ function MovieDetail(props) {
        .then(response => {
            if(response.data.success){
                 setComments(response.data.comments)
+                console.log(response.data)
            } else {
                 alert('댓글 가져오기 실패')
            }

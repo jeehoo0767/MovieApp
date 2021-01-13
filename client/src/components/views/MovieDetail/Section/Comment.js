@@ -52,8 +52,7 @@ function Comment(props) {
                     </React.Fragment>
                 )
             ))}
-
-            <form style={{ dispaly : 'flex '}} onSubmit={onSubmit}>
+            {localStorage.getItem('userId') ? <form style={{ dispaly : 'flex '}} onSubmit={onSubmit}>
                 <textarea 
                     style = {{ width : '100%', borderRadius : '5px'}}
                     onChange={handleValueChange}
@@ -62,7 +61,9 @@ function Comment(props) {
                 />
                 <br/>
                 <button style={{ width : '20%', height : '52px'}} onClick={onSubmit}>작성하기</button>
-            </form>
+            </form> : <div style={{textAlign : 'center', fontSize : '1.2rem'}}>
+Please log in to post comments..</div>}
+            
         </div>
     )
 }

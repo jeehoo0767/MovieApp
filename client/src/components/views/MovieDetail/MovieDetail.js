@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Row} from 'antd'
+import {Row, Button} from 'antd'
 import {API_KEY, API_URL, IMAGE_BASE_URL} from '../../Config'
 import MainImage from '../LandingPage/Sections/MainImage'
 import MovieInfo from './Section/MovieInfo'
@@ -87,7 +87,7 @@ function MovieDetail(props) {
                 <br/>
                 {/* Actors Grid */}
                 <div style={{ display:'flex', justifyContent : 'center', margin : '2rem'}}>
-                    <button onClick={handleShow}>Toggle Actor View</button>
+                    <Button onClick={handleShow}>Toggle Actor View</Button>
                 </div>
                 {Show && 
                     <Row gutter={[16, 16]}>
@@ -103,7 +103,7 @@ function MovieDetail(props) {
                 }
                 
             </div>
-
+            
             <Comment stateRefresh={stateRefresh} commentList = {Comments} postId = {movieId}/>
         </div>
     )

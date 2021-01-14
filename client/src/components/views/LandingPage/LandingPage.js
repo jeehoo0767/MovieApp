@@ -8,9 +8,7 @@ import { Row,Button } from 'antd';
 
 function LandingPage() {
     
-    const reduxValue = useSelector(state => state.user)
-
-    console.log(reduxValue)
+    const reduxValue = useSelector(state => state.value.value)
 
     const [Movies, setMovies] = useState([]);
     const [MainMovieImage, setMainMovieImage] = useState(null)
@@ -42,6 +40,7 @@ function LandingPage() {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`
 
         fetchMovies(endpoint)
+        console.log(reduxValue)
     }
 
 

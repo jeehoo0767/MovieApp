@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, {useState} from 'react';
+import { useDispatch } from "react-redux";
 import { Menu, Space, Input } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -7,9 +8,13 @@ import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Fragment } from 'react';
+import {changeValue} from '../../../../_actions/value_action'
 
 function RightMenu(props) {
 
+  const [SearchValue, setSearchValue] = useState("")
+  
+  const dispatch = useDispatch()
   const { Search } = Input;
 
   const suffix = (
@@ -21,7 +26,14 @@ function RightMenu(props) {
     />
   );
 
-  const onSearch = value => console.log(value);
+  const onSearchValueChange = (e) => {
+    setSearchValue(e.target.value)
+    dispatch(changeValue(SearchValue))
+  }
+
+  const onSearch = () => {
+    
+  }
 
   const user = useSelector(state => state.user)
 
@@ -40,7 +52,7 @@ function RightMenu(props) {
     return (
       <Fragment>
         <Space direction="vertical">
-         <Search placeholder="input search text" onSearch={onSearch} enterButton style={{marginTop : '8px'}}/>
+         <Search placeholder="input search text" value ={SearchValue} onChange = {onSearchValueChange} onSearch={onSearch} enterButton style={{marginTop : '8px'}}/>
         </Space>
         <Menu mode={props.mode} defaultSelectedKeys={['2']}>
           <Menu.Item key="mail">
@@ -56,8 +68,8 @@ function RightMenu(props) {
     return (
       <Fragment>
         <Space direction="vertical">
-          <Search placeholder="input search text" onSearch={onSearch} enterButton style={{marginTop : '8px'}}/>
-          </Space>
+          <Search placeholder="input search text" value ={SearchValue} onChange = {onSearchValueChange} onSearch={onSearch} enterButton style={{marginTop : '8px'}}/>
+        </Space>
         <Menu mode={props.mode}>
           <Menu.Item key="logout">
             <a onClick={logoutHandler}>Logout</a>

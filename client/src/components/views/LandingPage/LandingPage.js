@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useSelector } from 'react-redux'
 import { FaCode } from "react-icons/fa";
 import GridCard from '../commons/GridCard'
 import MainImage from './Sections/MainImage'
@@ -7,14 +8,20 @@ import { Row,Button } from 'antd';
 
 function LandingPage() {
     
+    const reduxValue = useSelector(state => state.user)
+
+    console.log(reduxValue)
+
     const [Movies, setMovies] = useState([]);
     const [MainMovieImage, setMainMovieImage] = useState(null)
     const [CurrentPage, setCurrentPage] = useState(0)
+    const [AllMovies, setAllMovies] = useState([])
 
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
         fetchMovies(endpoint)
+
     }, [])
 
     const fetchMovies = (endpoint) => {
@@ -36,6 +43,7 @@ function LandingPage() {
 
         fetchMovies(endpoint)
     }
+
 
     return (
         <div style={{ width : '100%', margin : '0'}}>

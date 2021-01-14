@@ -62,7 +62,7 @@ function MovieDetail(props) {
 
 
     return (
-        <div >
+        <div>
             {/* Header */}
             <MainImage 
                 image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}

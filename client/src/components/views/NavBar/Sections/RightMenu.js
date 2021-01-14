@@ -28,7 +28,6 @@ function RightMenu(props) {
 
   const onSearchValueChange = (e) => {
     setSearchValue(e.target.value)
-    console.log(e.target.value)
     dispatch(changeValue(e.target.value))
   }
 

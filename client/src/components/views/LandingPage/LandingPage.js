@@ -40,9 +40,26 @@ function LandingPage() {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`
 
         fetchMovies(endpoint)
-        console.log(reduxValue)
     }
 
+    const filterGridCardComponent = (data) => {
+        if(reduxValue){
+            data = data.filter((item) => {
+                return item.original_title.indexOf(reduxValue) > -1
+            });
+        }
+
+        return data.map((item, index) => {
+            return <React.Fragment key={index}>
+            <GridCard 
+                landingPage
+                image={item.poster_path? `${IMAGE_BASE_URL}w500${item.poster_path}` : null}
+                movieId={item.id}
+                movieName={item.original_title}
+            />
+        </React.Fragment>
+        })
+    }
 
     return (
         <div style={{ width : '100%', margin : '0'}}>
@@ -57,16 +74,7 @@ function LandingPage() {
                 <h2>Movies by latest</h2>
                 <hr/>
                 <Row gutter={[16, 16]}>
-                    {Movies && Movies.map((movie, index) => {
-                        return <React.Fragment key={index}>
-                            <GridCard 
-                                landingPage
-                                image={movie.poster_path? `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
-                                movieId={movie.id}
-                                movieName={movie.original_title}
-                            />
-                        </React.Fragment>
-                    })}
+                    {Movies && filterGridCardComponent(Movies)}
                 </Row>
            </div>
 

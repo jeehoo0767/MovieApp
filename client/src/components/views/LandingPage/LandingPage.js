@@ -5,6 +5,8 @@ import GridCard from '../commons/GridCard'
 import MainImage from './Sections/MainImage'
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config'
 import { Row,Button } from 'antd';
+import Axios from 'axios';
+import Search from 'antd/lib/input/Search';
 
 function LandingPage() {
     
@@ -19,8 +21,45 @@ function LandingPage() {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
         fetchMovies(endpoint)
-
+        getNaverMovie()
     }, [])
+
+    // const getNaverMovie = async () => {
+    //     const ID_KEY = 'fMS1KipIl0F8_xr7sBit'
+    //     const SECRET_KEY = 'v1MrR6HBmF'
+    //     const search = '사랑'
+    //     await Axios.get('/api/v1/search/movie.json', {
+    //         params : {
+    //             query : search,
+    //             display : 20
+    //         }, 
+    //         headers : {
+    //             'X-Naver-Client-Id' : ID_KEY,
+    //             'X-Naver-Client-Secret': SECRET_KEY
+    //         }
+    //     })
+    //     .then(response => {
+    //         console.log(response.data)
+    //     })
+    // }
+const getNaverMovie = async () => {
+    const ID_KEY = 'fMS1KipIl0F8_xr7sBit'
+    const SECRET_KEY = 'v1MrR6HBmF'
+    const search = '사랑'
+    const {data : {items
+    }} = await Axios.get('/api/v1/search/movie.json', {
+        params : {
+            query : Search,
+            display : 20
+        }, 
+        headers : {
+            'X-Naver-Client-Id' : ID_KEY,
+            'X-Naver-Client-Secret': SECRET_KEY
+        }
+    });
+    setAllMovies(items)
+}
+
 
     const fetchMovies = (endpoint) => {
         
@@ -45,19 +84,21 @@ function LandingPage() {
     const filterGridCardComponent = (data) => {
         if(reduxValue){
             data = data.filter((item) => {
-                return item.original_title.indexOf(reduxValue) > -1
+                return item.original_title.toLowerCase().indexOf(reduxValue) > -1
             });
         }
 
         return data.map((item, index) => {
-            return <React.Fragment key={index}>
-            <GridCard 
-                landingPage
-                image={item.poster_path? `${IMAGE_BASE_URL}w500${item.poster_path}` : null}
-                movieId={item.id}
-                movieName={item.original_title}
-            />
-        </React.Fragment>
+            return (
+                <React.Fragment key={index}>
+                    <GridCard 
+                        landingPage
+                        image={item.poster_path? `${IMAGE_BASE_URL}w500${item.poster_path}` : null}
+                        movieId={item.id}
+                        movieName={item.original_title}
+                    />
+                </React.Fragment>
+            )
         })
     }
 

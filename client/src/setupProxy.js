@@ -12,8 +12,7 @@ module.exports = function (app) {
         '/api',
         createProxyMiddleware({
             target: 'https://openapi.naver.com',
-            changeOrigin: true,
-            pathRewrite:{ '^/api/':'/' }
+            changeOrigin: true
         })
     );
 };

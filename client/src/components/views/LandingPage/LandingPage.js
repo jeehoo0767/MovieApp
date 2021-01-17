@@ -21,45 +21,7 @@ function LandingPage() {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
         fetchMovies(endpoint)
-        getNaverMovie()
     }, [])
-
-    // const getNaverMovie = async () => {
-    //     const ID_KEY = 'fMS1KipIl0F8_xr7sBit'
-    //     const SECRET_KEY = 'v1MrR6HBmF'
-    //     const search = '사랑'
-    //     await Axios.get('/api/v1/search/movie.json', {
-    //         params : {
-    //             query : search,
-    //             display : 20
-    //         }, 
-    //         headers : {
-    //             'X-Naver-Client-Id' : ID_KEY,
-    //             'X-Naver-Client-Secret': SECRET_KEY
-    //         }
-    //     })
-    //     .then(response => {
-    //         console.log(response.data)
-    //     })
-    // }
-const getNaverMovie = async () => {
-    const ID_KEY = 'fMS1KipIl0F8_xr7sBit'
-    const SECRET_KEY = 'v1MrR6HBmF'
-    const search = '사랑'
-    const {data : {items
-    }} = await Axios.get('/api/v1/search/movie.json', {
-        params : {
-            query : Search,
-            display : 20
-        }, 
-        headers : {
-            'X-Naver-Client-Id' : ID_KEY,
-            'X-Naver-Client-Secret': SECRET_KEY
-        }
-    });
-    setAllMovies(items)
-}
-
 
     const fetchMovies = (endpoint) => {
         

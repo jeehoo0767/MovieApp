@@ -4,6 +4,7 @@ import { FaCode } from "react-icons/fa";
 import GridCard from '../commons/GridCard'
 import MainImage from './Sections/MainImage'
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config'
+import { NAVER_API_KEY, NAVER_SECRET_KEY } from '../../NaverConfig'
 import { Row,Button } from 'antd';
 import Axios from 'axios';
 import Search from 'antd/lib/input/Search';
@@ -15,12 +16,28 @@ function LandingPage() {
     const [Movies, setMovies] = useState([]);
     const [MainMovieImage, setMainMovieImage] = useState(null)
     const [CurrentPage, setCurrentPage] = useState(0)
-    const [AllMovies, setAllMovies] = useState([])
+    const [SearchMovies, setSearchMovies] = useState([])
 
     useEffect(() => {
+
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
 
         fetchMovies(endpoint)
+
+        Axios.get('/v1/search/movie.json', {
+            params : {
+                query : Search,
+                display : 20
+            },
+            headers : {
+                'X-Naver-Client-Id' : NAVER_API_KEY,
+                'X-Naver-Client-Secret': NAVER_SECRET_KEY
+            }
+        })
+        .then(response => {
+            console.log(response.data.items)
+            setSearchMovies(response.data.items)
+        })
     }, [])
 
     const fetchMovies = (endpoint) => {

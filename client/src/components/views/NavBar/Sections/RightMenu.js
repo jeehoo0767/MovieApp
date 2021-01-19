@@ -51,10 +51,13 @@ function RightMenu(props) {
   if (user.userData && !user.userData.isAuth) {
     return (
       <Fragment>
-        <Space direction="vertical">
+        {/* <Space direction="vertical">
          <Search placeholder="input search text" value ={SearchValue} onChange = {onSearchValueChange} onSearch={onSearch} enterButton style={{marginTop : '8px'}}/>
-        </Space>
+        </Space> */}
         <Menu mode={props.mode} defaultSelectedKeys={['2']}>
+          <Menu.Item key="searchMovies">
+            <a href="/searchMovies">searchMovies</a>
+          </Menu.Item>
           <Menu.Item key="mail">
             <a href="/login">Signin</a>
           </Menu.Item>
@@ -71,6 +74,9 @@ function RightMenu(props) {
           <Search placeholder="input search text" value ={SearchValue} onChange = {onSearchValueChange} onSearch={onSearch} enterButton style={{marginTop : '8px'}}/>
         </Space>
         <Menu mode={props.mode}>
+          <Menu.Item key="searchMovies">
+            <a href="/searchMovies">searchMovies</a>
+          </Menu.Item>
           <Menu.Item key="logout">
             <a onClick={logoutHandler}>Logout</a>
           </Menu.Item>

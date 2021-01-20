@@ -70,9 +70,6 @@ function RightMenu(props) {
   } else {
     return (
       <Fragment>
-        <Space direction="vertical">
-          <Search placeholder="input search text" value ={SearchValue} onChange = {onSearchValueChange} onSearch={onSearch} enterButton style={{marginTop : '8px'}}/>
-        </Space>
         <Menu mode={props.mode}>
           <Menu.Item key="searchMovies">
             <a href="/searchMovies">searchMovies</a>

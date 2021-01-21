@@ -5,8 +5,9 @@ import {Space, Input, Row} from 'antd';
 import { NAVER_API_KEY, NAVER_SECRET_KEY } from '../../NaverConfig'
 import {changeValue} from '../../../_actions/value_action'
 import GridCard from '../commons/GridCard'
+import "./Sections/SearchMovies.css"
 
-function SearchMovies() {
+function SearchMovies(props) {
     
     const [SearchValue, setSearchValue] = useState("")
     const [SearchMovies, setSearchMovies] = useState([])
@@ -41,13 +42,17 @@ function SearchMovies() {
 
         return data.map((item, index) => {
             return (
-                <React.Fragment key={index}>
                     <GridCard 
-                        landingPage
+                        SearchMovies
+                        key={props.link}
+                        id = {item.link}
                         image={item.image}
-                        movieName={item.title}
+                        title={item.title}
+                        rating={item.userRating}
+                        year = {item.pubDate}
+                        director = {item.director}
+                        actor = {item.actor}
                     />
-                </React.Fragment>
             )
         })
     }
@@ -63,9 +68,7 @@ function SearchMovies() {
             <div style={{ width:'85%', margin : '1rem auto'}}>
                 <h2>Movies by latest</h2>
                 <hr/>
-                <Row gutter={[16, 16]}>
                     {SearchMovies && filterGridCardComponent(SearchMovies)}
-                </Row>
            </div>
         </div>
     )

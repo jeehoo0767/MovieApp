@@ -67,8 +67,10 @@ function SearchMovies(props) {
             </div>
             <div style={{ width:'85%', margin : '1rem auto'}}>
                 <h2>Movies by latest</h2>
-                <hr/>
+                <hr style={{marginBottom : '50px'}}/>
+                <Row gutter={[16, 16]}>
                     {SearchMovies && filterGridCardComponent(SearchMovies)}
+                </Row>
            </div>
         </div>
     )

@@ -14,28 +14,32 @@ function GridCard(props) {
         )
     } else if(props.SearchMovies) {
         return (
-            <div className="movie">
-                <a href={props.id} target="_blank">
-                <img src={props.image} alt={props.title} title={props.title}></img>
-                <div className="movie__data">
-                <h3 className="movie__title">{
-                    props.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
-                    }</h3>
-                <p className="movie__rating">
-                    <span>평점</span> {props.rating}/10
-                </p>
-                <p className="movie__year">
-                    <span>개봉일</span> {props.year}
-                </p>
-                <p className="movie__director">
-                <span>감독</span> {props.director}
-                </p>
-                <p className="movie__actor">
-                <span>배우</span> {props.actor}
-                </p>
+            <Col lg={12} md = {12} xs = {24}>
+                <div className="movies">
+                    <div className="movie">
+                        <a href={props.id} target="_blank">
+                        <img src={props.image} alt={props.title} title={props.title}></img>
+                            <div className="movie__data">
+                                <h3 className="movie__title">{
+                                    props.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
+                                    }</h3>
+                                <p className="movie__rating">
+                                    <span>평점</span> {props.rating}/10
+                                </p>
+                                <p className="movie__year">
+                                    <span>개봉일</span> {props.year}
+                                </p>
+                                <p className="movie__director">
+                                <span>감독</span> {props.director}
+                                </p>
+                                <p className="movie__actor">
+                                <span>배우</span> {props.actor}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                </a>
-            </div>
+            </Col>
         )
     } else {
         return(

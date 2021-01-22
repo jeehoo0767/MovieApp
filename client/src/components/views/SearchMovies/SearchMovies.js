@@ -44,7 +44,7 @@ function SearchMovies(props) {
             return (
                     <GridCard 
                         SearchMovies
-                        key={props.link}
+                        key={index}
                         id = {item.link}
                         image={item.image}
                         title={item.title}

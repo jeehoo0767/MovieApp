@@ -9,3 +9,19 @@ To use this application,
 3. Type  " npm install " inside the root directory  ( Download Server Dependencies ) 
 4. Type " npm install " inside the client directory ( Download Front-end Dependencies )
 
+## "scripts": {
+    "start": "nodemon index.js",
+    "client": "cd client && yarn start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn client\""
+  }
+
+## Skills
+HTML5
+CSS3
+Javascript
+React
+Express
+Ant Design
+
+

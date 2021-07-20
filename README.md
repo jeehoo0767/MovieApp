@@ -1,6 +1,6 @@
 ## 리액트와 NODEJS를 활용한 MovieApp
 
-Thank you for having interest in this repository ! 
+Thank you for having interest in this repository !! 
 
 To use this application, 
 
